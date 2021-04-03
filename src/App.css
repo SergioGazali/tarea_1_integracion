@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.seasonsFlex{
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  justify-content: space-between;
+}
+.seariesColumn{
+  margin-left: 5%;
+  margin-right: 5%;
+}
