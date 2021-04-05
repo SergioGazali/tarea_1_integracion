@@ -53,25 +53,18 @@ export default function BasicExample() {
       <div>
         <ul>
           <li>
-            <Link to="/">Tarea 1</Link>
+            <Link to="/tarea_1_integracion">Tarea 1</Link>
           </li>
         </ul>
 
         <hr />
 
-        {/*
-          A <Switch> looks through all its children <Route>
-          elements and renders the first one whose path
-          matches the current URL. Use a <Switch> any time
-          you have multiple routes, but you want only one
-          of them to render at a time
-        */}
         <Switch>
-          <Route exact path="/">
-            <Home seasons={stateValue}/>
-          </Route>
           <Route exact path="/seasons/:series/:id">
             <Season seasons={stateValue}/>
+          </Route>
+          <Route exact path="/tarea_1_integracion">
+            <Home seasons={stateValue}/>
           </Route>
         </Switch>
       </div>
