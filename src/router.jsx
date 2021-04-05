@@ -1,13 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-import React, { useState, useEffect } from 'react';
-import Home from './components/Home';
-import { Season } from './components/Season';
+import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Link,
+  useParams
 } from "react-router-dom";
+import App from "./App";
+import { useState, useEffect } from 'react';
+import Home from "./components/Home";
+import { Season } from "./components/Season";
 
 const processData = (data) => {
   var breakingBad = [];
@@ -34,7 +36,8 @@ const processData = (data) => {
   return result;
 }
 
-function App() {
+
+export default function BasicExample() {
   const [stateValue, setState] = useState({"BreakingBad": {}, "BetterCallSaul": {}});
   useEffect(() => {
     // send HTTP request
@@ -47,21 +50,44 @@ function App() {
   }, [])
   return (
     <Router>
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Esta es la tarea de Sergio.
-          </p>
-            <Switch>
-              <Route path="/">
-                <Home seasons={stateValue}/>
-              </Route>
-              <Route path="/seasons/:id" component={Season}/>
-            </Switch>
-        </header>
+      <div>
+        <ul>
+          <li>
+            <Link to="/">Tarea 1</Link>
+          </li>
+        </ul>
+
+        <hr />
+
+        {/*
+          A <Switch> looks through all its children <Route>
+          elements and renders the first one whose path
+          matches the current URL. Use a <Switch> any time
+          you have multiple routes, but you want only one
+          of them to render at a time
+        */}
+        <Switch>
+          <Route exact path="/">
+            <Home seasons={stateValue}/>
+          </Route>
+          <Route exact path="/seasons/:series/:id">
+            <Season seasons={stateValue}/>
+          </Route>
+        </Switch>
       </div>
     </Router>
   );
 }
 
-export default App;
+// You can think of these components as "pages"
+// in your app.
+
+function Dashboard() {
+  /* let { id } = useParams(); */
+  return (
+    <div>
+      <h2>Dashboard</h2>
+      {/* <h3>ID: {id}</h3> */}
+    </div>
+  );
+}
