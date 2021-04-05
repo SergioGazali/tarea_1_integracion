@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 export const Season = (props) => {
   const stateValue = props.seasons;
@@ -10,8 +10,8 @@ export const Season = (props) => {
             <h2>{series}</h2>
             <h2>Season {id}</h2>
             <ol>
-            {stateValue[series][id].map((episode, index) => (
-              <li>{episode.title}</li>
+            {Object.values(stateValue[series][id]).map((episode, index) => (
+              <Link to={`/episodes/${series}/${id}/${episode.episode}`}><li>{episode.title}</li></Link>
             ))}
             </ol>
           </div>

@@ -10,25 +10,28 @@ import App from "./App";
 import { useState, useEffect } from 'react';
 import Home from "./components/Home";
 import { Season } from "./components/Season";
+import { Episode } from "./components/Episode";
 
 const processData = (data) => {
-  var breakingBad = [];
-  var betterCallSaul = [];
+  var breakingBad = {};
+  var betterCallSaul = {};
   data.map((episode, index) => {
     if (episode.series === "Breaking Bad") {
       if (episode.season in breakingBad) {
-        breakingBad[episode.season].push(episode);
+        /* breakingBad[episode.season].push(episode); */
+        breakingBad[episode.season][episode.episode] = episode;
       } else {
-        breakingBad[episode.season] = [];
-        breakingBad[episode.season].push(episode);
+        breakingBad[episode.season] = {};
+        /* breakingBad[episode.season].push(episode); */
+        breakingBad[episode.season][episode.episode] = episode;
       }
     }
     else {
       if (episode.season in betterCallSaul) {
-        betterCallSaul[episode.season].push(episode);
+        betterCallSaul[episode.season][episode.episode] = episode;
       } else {
-        betterCallSaul[episode.season] = [];
-        betterCallSaul[episode.season].push(episode);
+        betterCallSaul[episode.season] = {};
+        betterCallSaul[episode.season][episode.episode] = episode;
       }
     }
   })
@@ -65,6 +68,9 @@ export default function BasicExample() {
           </Route>
           <Route exact path="/tarea_1_integracion">
             <Home seasons={stateValue}/>
+          </Route>
+          <Route exact path="/episodes/:series/:season/:episode">
+            <Episode seasons={stateValue}/>
           </Route>
         </Switch>
       </div>
