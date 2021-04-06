@@ -11,6 +11,7 @@ import Home from "./components/Home";
 import { Season } from "./components/Season";
 import { Episode } from "./components/Episode";
 import { Character } from "./components/Character";
+import { Search } from "./components/Search";
 
 const processData = (data) => {
   var breakingBad = {};
@@ -42,6 +43,7 @@ const processData = (data) => {
 
 export default function BasicExample() {
   const [stateValue, setState] = useState({"BreakingBad": {}, "BetterCallSaul": {}});
+  const [searchName, setSearchName] = useState();
   useEffect(() => {
     // send HTTP request
     fetch("https://tarea-1-breaking-bad.herokuapp.com/api/episodes")
@@ -54,11 +56,19 @@ export default function BasicExample() {
   return (
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to="/tarea_1_integracion">Tarea 1</Link>
-          </li>
-        </ul>
+        
+        <Link to="/tarea_1_integracion">Tarea 1</Link>
+        <form>
+          <label for="ch_name">Buscar personaje </label>
+          <input 
+            type="text" 
+            id="ch_name" 
+            name="ch_name" 
+            onChange={e => setSearchName(e.target.value.split(" ").join("+"))}>
+          </input>
+          {/* <input type="submit" value="Submit"></input> */}
+          <Link to={`/search/${searchName}`}><button>Buscar</button></Link>
+        </form>
 
         <hr />
 
@@ -74,6 +84,9 @@ export default function BasicExample() {
           </Route>
           <Route exact path="/characters/:name">
             <Character />
+          </Route>
+          <Route exact path="/search/:searchname">
+            <Search />
           </Route>
         </Switch>
       </div>

@@ -25,7 +25,7 @@ export const Episode = (props) => {
         
             <ul>
             {visited_episode.characters.map((character, index) => (
-              <Link to={`/characters/${character}`}><li key={index}>{character}</li></Link>
+              <Link to={`/characters/${character.split(" ").join("+")}`}><li key={index}>{character}</li></Link>
             ))}
             </ul>
           </div>

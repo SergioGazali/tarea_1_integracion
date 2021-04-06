@@ -3,18 +3,18 @@ import { useParams, Link } from 'react-router-dom';
 
 export const Character = () => {
   const { name } = useParams();
-  const name_array = name.split(" ");
-  const search_name = name_array.join("+");
+  /* const name_array = name.split(" ");
+  const search_name = name_array.join("+"); */
   const [characterState, setCharacterState] = useState();
   const [quotesState, setQuotesState] = useState();
 
   useEffect(() => {
-    fetch(`https://tarea-1-breaking-bad.herokuapp.com/api/characters?name=${search_name}`)
+    fetch(`https://tarea-1-breaking-bad.herokuapp.com/api/characters?name=${name}`)
       .then(response => response.json())
       .then(result => setCharacterState(result[0]));
   }, [])
   useEffect(() => {
-    fetch(`https://tarea-1-breaking-bad.herokuapp.com/api/quote?author=${search_name}`)
+    fetch(`https://tarea-1-breaking-bad.herokuapp.com/api/quote?author=${name}`)
       .then(response => response.json())
       .then(result => setQuotesState(result));
   }, [])
