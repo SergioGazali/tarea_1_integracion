@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 export const Episode = (props) => {
   const stateValue = props.seasons;
-  const [visited, setVisited] = useState();
   const { series, season, episode } = useParams();
   let visited_episode;
   console.log(stateValue);
@@ -26,7 +25,7 @@ export const Episode = (props) => {
         
             <ul>
             {visited_episode.characters.map((character, index) => (
-              <li key={index}>{character}</li>
+              <Link to={`/characters/${character}`}><li key={index}>{character}</li></Link>
             ))}
             </ul>
           </div>

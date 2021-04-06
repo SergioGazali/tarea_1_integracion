@@ -6,11 +6,11 @@ import {
   Link,
   useParams
 } from "react-router-dom";
-import App from "./App";
 import { useState, useEffect } from 'react';
 import Home from "./components/Home";
 import { Season } from "./components/Season";
 import { Episode } from "./components/Episode";
+import { Character } from "./components/Character";
 
 const processData = (data) => {
   var breakingBad = {};
@@ -71,6 +71,9 @@ export default function BasicExample() {
           </Route>
           <Route exact path="/episodes/:series/:season/:episode">
             <Episode seasons={stateValue}/>
+          </Route>
+          <Route exact path="/characters/:name">
+            <Character />
           </Route>
         </Switch>
       </div>
