@@ -43,10 +43,53 @@
   width: 60%;
   justify-content: space-between;
 }
-.seariesColumn{
-  margin-left: 5%;
-  margin-right: 5%;
+.season{
+  width: 60%;
+}
+body {
+  background-color: #015E2C
+}
+header {
+  background-color: #FAF400;
+  padding: 10px;
+}
+#paginate{
+  display: flex;
+  flex-direction: row;
+}
+.charactersList{
+  list-style: '🏌️‍♂️';
+}
+.seasonsList{
+  list-style: '📺';
+}
+.quotesList{
+  list-style: '🎤';
+}
+.seriesColumn{
+  background-color: #CB0033;
+  /* margin-left: 10px;
+  margin-right: 5%; */
+  padding: 2%;
+  border-style: solid;
+  border-color: black;
+}
+ul{
+  list-style-type: none;
+}
+li{
+  margin-top: 2px;
 }
 #characterImage{
   width: 30%;
+}
+#title{
+  margin-left: 10px;
+}
+#form{
+  margin-left: 10px;
+}
+#mainDiv{
+  display: flex;
+  justify-content: center;
 }

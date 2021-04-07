@@ -31,17 +31,19 @@ export const Search = (props) => {
 
   if (!characterState || !nextCharacterState) return (<p>procesando</p>);
   return (
-    <div className="seasonsFlex">
+    <div className="season">
           <div className="seriesColumn">
             <h2>Results</h2>
-            <ol>
+            <ul className="charactersList">
             {characterState.map((character, index) => (
               <Link to={`/characters/${character.name.split(" ").join("+")}`}><li key={index}>{character.name}</li></Link>
             ))}
-            </ol>
+            </ul>
+            <p>page {pageState}</p>
+            <div id="paginate">
               {pageState > 1 && <button onClick={() => setPageState(pageState - 1)}>Anterior</button>}
-              <p>page {pageState}</p>
               {((nextCharacterState.length != 0) && (characterState.length > 1)) && <button onClick={() => setPageState(pageState + 1)}>Siguiente</button>}
+            </div>
           </div>
     </div>
   );

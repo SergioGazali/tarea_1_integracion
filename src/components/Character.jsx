@@ -25,8 +25,9 @@ export const Character = () => {
     <div className="seasonsFlex">
           <div className="seriesColumn">
             <h1>{characterState.name}</h1>
-            <p>{characterState.category}</p> 
+            <p>{characterState.category}</p>
             <p>{characterState.status}</p>
+            <hr />
             <p>Also known as: {characterState.nickname}</p>
             <p>Portrayed by: {characterState.portrayed}</p>
 
@@ -39,21 +40,24 @@ export const Character = () => {
             ))}
             </ul>
             <h3>Breaking Bad appearance</h3>        
-            <ul>
+            <ul className="seasonsList">
             {characterState.appearance && characterState.appearance.map((season, index) => (
               <Link to={`/seasons/BreakingBad/${season}`}><li key={index}>Season {season}</li></Link>
             ))}
             </ul>
             <h3>Better Call Saul appearance</h3>        
-            <ul>
+            <ul className="seasonsList">
             {characterState.better_call_saul_appearance && characterState.better_call_saul_appearance.map((season, index) => (
               <Link to={`/seasons/BetterCallSaul/${season}`}><li key={index}>Season {season}</li></Link>
             ))}
             </ul>
             <h3>Quotes</h3>        
-            <ul>
+            <ul className="quotesList">
             {quotesState && quotesState.map((quote, index) => (
-              <li key={index}>"{quote.quote}"<br/>In {quote.series}</li>
+              <>
+                <hr />
+                <li key={index}>"{quote.quote}"<br/>In {quote.series}</li>
+              </>
             ))}
             </ul>
           </div>

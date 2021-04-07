@@ -6,13 +6,15 @@ import {
   Link,
   useParams
 } from "react-router-dom";
+import "../App.css";
+
 
 export default function Home(props) {
   return (
     <div className="seasonsFlex">
           <div className="seriesColumn">
             <h2>Breaking Bad</h2>
-            <ul>
+            <ul className="seasonsList">
               {Object.keys(props.seasons.BreakingBad).map((season, index) => (
                 <Link to={`/seasons/BreakingBad/${season}`}><li key={index}>Season {season}</li></Link>
               ))}
@@ -20,7 +22,7 @@ export default function Home(props) {
           </div>
           <div className="seriesColumn">
             <h2>Better Call Saul</h2>
-            <ul>
+            <ul className="seasonsList">
               {Object.keys(props.seasons.BetterCallSaul).map((season, index) => (
                 <Link to={`/seasons/BetterCallSaul/${season}`}><li key={index}>Season {season}</li></Link>
               ))}

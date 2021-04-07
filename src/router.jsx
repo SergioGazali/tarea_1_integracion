@@ -58,9 +58,9 @@ export default function BasicExample() {
   return (
     <Router>
       <div>
-        
-        <Link to="/tarea_1_integracion">Tarea 1</Link>
-        <form>
+        <header>
+        <Link to="/tarea_1_integracion"><h1 id="title">Tarea 1</h1></Link>
+        <form id="form">
           <label for="ch_name">Buscar personaje </label>
           <input 
             type="text" 
@@ -81,9 +81,9 @@ export default function BasicExample() {
             return "/search/"
             }}><button>Buscar</button></Link>
         </form>
-
+        </header>
         <hr />
-
+        <div id="mainDiv">
         <Switch>
           <Route exact path="/seasons/:series/:id">
             <Season seasons={stateValue}/>
@@ -104,6 +104,7 @@ export default function BasicExample() {
             <Search name={searchName}/>
           </Route> */}
         </Switch>
+        </div>
       </div>
     </Router>
   );
