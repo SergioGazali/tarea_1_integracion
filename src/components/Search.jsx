@@ -2,28 +2,28 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 export const Search = (props) => {
-  console.log("props.name:", props.name);
-  const { searchname } = useParams();
+  console.log("PROPS.name:", props.name);
+  // const { searchname } = useParams();
   const [characterState, setCharacterState] = useState();
   const [nextCharacterState, setNextCharacterState] = useState();
   // const [searchNameState, setSearchNameState] = useState(searchname);
-  console.log("params:", searchname);
+  // console.log("params:", searchname);
   // console.log("searchNameState:", searchNameState);
   const [pageState, setPageState] = useState(1);
-  console.log(searchname);
+  // console.log(searchname);
   useEffect(() => {
-    fetch(`https://tarea-1-breaking-bad.herokuapp.com/api/characters?name=${searchname}&offset=${(pageState-1)*10}`)
+    fetch(`https://tarea-1-breaking-bad.herokuapp.com/api/characters?name=${props.name}&offset=${(pageState-1)*10}`)
       .then(response => response.json())
       .then(result => setCharacterState(result));
-  }, [pageState, searchname])
+  }, [pageState, props.name])
   useEffect(() => {
-    fetch(`https://tarea-1-breaking-bad.herokuapp.com/api/characters?name=${searchname}&offset=${(pageState)*10}`)
+    fetch(`https://tarea-1-breaking-bad.herokuapp.com/api/characters?name=${props.name}&offset=${(pageState)*10}`)
       .then(response => response.json())
       .then(result => setNextCharacterState(result));
-  }, [pageState, searchname])
+  }, [pageState, props.name])
   useEffect(()=>{
     setPageState(1)
-  }, [searchname])
+  }, [props.name])
   // console.log("pageState", pageState);
   console.log("characterState", characterState);
   if (nextCharacterState) console.log("nextCharacterState", nextCharacterState);

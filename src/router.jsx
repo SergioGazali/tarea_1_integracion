@@ -53,6 +53,7 @@ export default function BasicExample() {
       .then(result => setState(result));
     // save response to variable
   }, [])
+  console.log("router search: ", searchName);
   return (
     <Router>
       <div>
@@ -64,7 +65,13 @@ export default function BasicExample() {
             type="text" 
             id="ch_name" 
             name="ch_name" 
-            onChange={e => setSearchName(e.target.value.split(" ").join("+"))}>
+            onChange={e => {
+              if (e.target.value) {
+                setSearchName(e.target.value.split(" ").join("+"))
+              } else {
+                setSearchName("")
+              }
+              }}>
           </input>
           {/* <input type="submit" value="Submit"></input> */}
           <Link to={`/search/${searchName}`}><button>Buscar</button></Link>
@@ -85,9 +92,12 @@ export default function BasicExample() {
           <Route exact path="/characters/:name">
             <Character />
           </Route>
-          <Route exact path="/search/:searchname">
+          <Route path="/search/:searchname?">
             <Search name={searchName}/>
           </Route>
+          {/* <Route path="/search/">
+            <Search name={searchName}/>
+          </Route> */}
         </Switch>
       </div>
     </Router>
