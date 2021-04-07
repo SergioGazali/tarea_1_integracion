@@ -43,7 +43,7 @@ const processData = (data) => {
 
 export default function BasicExample() {
   const [stateValue, setState] = useState({"BreakingBad": {}, "BetterCallSaul": {}});
-  const [searchName, setSearchName] = useState();
+  const [searchName, setSearchName] = useState("");
   useEffect(() => {
     // send HTTP request
     fetch("https://tarea-1-breaking-bad.herokuapp.com/api/episodes")
@@ -54,6 +54,7 @@ export default function BasicExample() {
     // save response to variable
   }, [])
   console.log("router search: ", searchName);
+  console.log("target value: ", searchName);
   return (
     <Router>
       <div>
@@ -64,9 +65,10 @@ export default function BasicExample() {
           <input 
             type="text" 
             id="ch_name" 
-            name="ch_name" 
+            name="ch_name"
+            value={searchName}
             onChange={e => {
-              if (e.target.value) {
+              if (e.target.value !== undefined) {
                 setSearchName(e.target.value.split(" ").join("+"))
               } else {
                 setSearchName("")
@@ -74,7 +76,10 @@ export default function BasicExample() {
               }}>
           </input>
           {/* <input type="submit" value="Submit"></input> */}
-          <Link to={`/search/${searchName}`}><button>Buscar</button></Link>
+          <Link to={()=>{
+            if (searchName) return`/search/${searchName}`
+            return "/search/"
+            }}><button>Buscar</button></Link>
         </form>
 
         <hr />
