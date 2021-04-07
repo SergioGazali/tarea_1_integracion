@@ -86,7 +86,7 @@ export default function BasicExample() {
             <Character />
           </Route>
           <Route exact path="/search/:searchname">
-            <Search />
+            <Search name={searchName}/>
           </Route>
         </Switch>
       </div>

@@ -11,7 +11,7 @@ export const Season = (props) => {
             <h2>Season {id}</h2>
             <ol>
             {Object.values(stateValue[series][id]).map((episode, index) => (
-              <Link to={`/episodes/${series}/${id}/${episode.episode}`}><li>{episode.title}</li></Link>
+              <Link to={`/episodes/${series}/${id}/${episode.episode}`}><li key={index}>{episode.title}</li></Link>
             ))}
             </ol>
           </div>
