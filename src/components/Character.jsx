@@ -20,7 +20,7 @@ export const Character = () => {
   }, [])
   console.log(characterState);
   console.log(quotesState);
-  if (!characterState || !quotesState) return (<p>procesando</p>);
+  if (!characterState || !quotesState) return (<p>...</p>);
   return (
     <div className="seasonsFlex">
           <div className="seriesColumn">

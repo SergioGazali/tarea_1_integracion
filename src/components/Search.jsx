@@ -29,7 +29,7 @@ export const Search = (props) => {
   if (nextCharacterState) console.log("nextCharacterState", nextCharacterState);
   if (characterState) console.log("compare", characterState.length >= 0);
 
-  if (!characterState || !nextCharacterState) return (<p>procesando</p>);
+  if (!characterState || !nextCharacterState) return (<p>...</p>);
   return (
     <div className="season">
           <div className="seriesColumn">

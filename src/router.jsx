@@ -44,6 +44,7 @@ const processData = (data) => {
 export default function BasicExample() {
   const [stateValue, setState] = useState({"BreakingBad": {}, "BetterCallSaul": {}});
   const [searchName, setSearchName] = useState("");
+  const [fetched, setFetched] = useState(0);
   useEffect(() => {
     // send HTTP request
     console.log("FETCHING!!!!!!!!");
@@ -51,14 +52,18 @@ export default function BasicExample() {
       .then(response => response.json())
       //.then(data => console.log(data));
       .then(data => processData(data))
-      .then(result => setState(result));
+      .then(result => {setState(result)});
     // save response to variable
-  }, [])
+  }, [fetched])
   console.log("router search: ", searchName);
   console.log("target value: ", searchName);
   return (
     <Router>
-      <div>
+      <div onLoad={()=>{
+        console.log("fetched: ", fetched);
+        setFetched(1);
+        console.log("fetched: ", fetched);
+      }}>
         <header>
         <Link to="/tarea_1_integracion"><h1 id="title">Tarea 1</h1></Link>
         <form id="form">
@@ -70,7 +75,7 @@ export default function BasicExample() {
             value={searchName}
             onChange={e => {
               if (e.target.value !== undefined) {
-                setSearchName(e.target.value.split(" ").join("+"))
+                setSearchName(e.target.value)
               } else {
                 setSearchName("")
               }
@@ -78,7 +83,7 @@ export default function BasicExample() {
           </input>
           {/* <input type="submit" value="Submit"></input> */}
           <Link to={()=>{
-            if (searchName) return`/search/${searchName}`
+            if (searchName) return`/search/${searchName.split(" ").join("+")}`
             return "/search/"
             }}><button>Buscar</button></Link>
         </form>
