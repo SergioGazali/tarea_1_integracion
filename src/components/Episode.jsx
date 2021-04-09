@@ -12,8 +12,8 @@ export const Episode = (props) => {
       setVisited(iterated_episode);
     }
   }); */
-  visited_episode = stateValue[series][season][episode];
-  if (!visited_episode) return (<p>procesando</p>);
+  if (stateValue[series][season]) visited_episode = stateValue[series][season][episode];
+  if (!visited_episode) return (<p>...</p>);
   return (
     <div className="seasonsFlex">
           <div className="seriesColumn">
@@ -22,7 +22,7 @@ export const Episode = (props) => {
             <h2>{visited_episode.series}</h2>
             <h3>Season {visited_episode.season}</h3>
             <h3>Episode {visited_episode.episode}</h3>
-            <p>Air date: {visited_episode.air_date}</p>
+            <p>Air date: {visited_episode.air_date.split("T")[0]}</p>
         
             <ul className="charactersList">
             {visited_episode.characters.map((character, index) => (

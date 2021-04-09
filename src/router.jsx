@@ -46,6 +46,7 @@ export default function BasicExample() {
   const [searchName, setSearchName] = useState("");
   useEffect(() => {
     // send HTTP request
+    console.log("FETCHING!!!!!!!!");
     fetch("https://tarea-1-breaking-bad.herokuapp.com/api/episodes")
       .then(response => response.json())
       //.then(data => console.log(data));

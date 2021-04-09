@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 export const Season = (props) => {
   const stateValue = props.seasons;
   const { series, id } = useParams();
+  if (!stateValue[series][id]) return (<p>...</p>);
   return (
     <div className="season">
           <div className="seriesColumn">
